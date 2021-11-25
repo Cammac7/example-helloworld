@@ -18,6 +18,12 @@ import * as borsh from 'borsh';
 import {getPayer, getRpcUrl, createKeypairFromFile} from './utils';
 
 /**
+ * Address of program to ping
+ */
+const camsProgramID = new PublicKey('Ew3DuvrwLTGAP3Cy4928qBw2kjmiyFuv263ZE8gzpzAH');
+
+
+/**
  * Connection to the network
  */
 let connection: Connection;
@@ -137,7 +143,7 @@ export async function checkProgram(): Promise<void> {
   // Read program id from keypair file
   try {
     const programKeypair = await createKeypairFromFile(PROGRAM_KEYPAIR_PATH);
-    programId = programKeypair.publicKey;
+    programId = camsProgramID;
   } catch (err) {
     const errMsg = (err as Error).message;
     throw new Error(
